@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = ">=3.1"
+django-filter = "*"
+pillow = "*"
+pytz = "*"
+django-debug-toolbar = "*"
+django-admin-interface = "*"
+
+[requires]
+python_version = "3.8"
