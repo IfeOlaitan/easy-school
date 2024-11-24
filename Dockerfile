@@ -35,7 +35,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # Set working directory
 WORKDIR /app
 
-# Copy project files
+# Copy project file
 COPY . .
 
 # Create a non-root user
