@@ -20,14 +20,3 @@ output "instance_public_ip" {
   description = "The public IP address of our EC2 instance"
   value       = module.compute.public_ip
 }
-
-# output "instance_public_dns" {
-#  description = "The public DNS name of our EC2 instance"
-#  value       = module.compute.public_dns
-#}
-
-# Application access - makes it easy to access our application
-#output "application_url" {
-#  description = "URL where the application can be accessed"
-#  value       = "http://${module.compute.public_dns}"
-#}
