@@ -1,0 +1,72 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mrunderline",
+      "name": "ali madihi bidgoli",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/23085360?v=4",
+      "profile": "https://github.com/mrunderline",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "MohanChhabaria",
+      "name": "Mohan Chhabaria",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/63086398?v=4",
+      "profile": "https://github.com/MohanChhabaria",
+      "contributions": [
+        "design"
+       ]
+    },
+    {
+      "login": "jvdoorn",
+      "name": "Julian van Doorn",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/19390615?v=4",
+      "profile": "https://github.com/jvdoorn",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "adamzavacky",
+      "name": "adamzavacky",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/44172077?v=4",
+      "profile": "https://github.com/adamzavacky",
+      "contributions": [
+        "design",
+        "code"
+      ]
+    },
+    {
+      "login": "davidkarabas",
+      "name": "davidkarabas",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/56340850?v=4",
+      "profile": "https://github.com/davidkarabas",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    }
+    {
+      "login": "mmoomocow",
+      "name": "mmoomocow",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/44288823?v=4",
+      "profile": "https://github.com/mmoomocow",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "easy-school",
+  "projectOwner": "ZeroCoolHacker",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

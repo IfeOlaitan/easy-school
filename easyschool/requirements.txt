@@ -1,0 +1,11 @@
+-i https://pypi.org/simple/
+django-admin-interface
+django-colorfield
+django-debug-toolbar
+django-filter
+django-flat-responsive
+django-flat-theme
+django
+pillow
+pytz
+sqlparse
