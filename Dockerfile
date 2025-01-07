@@ -1,50 +1,55 @@
-# Build stage
-FROM python:3.9-slim as builder
+# Stage 1: Builder
+FROM python:3.9-alpine AS builder
 
 WORKDIR /app
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
 
 # Install build dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc python3-dev libpq-dev && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache \
+    postgresql-dev \
+    gcc \
+    python3-dev \
+    musl-dev
 
+# Create and activate virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Install Python dependencies
 COPY requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Runtime stage
-FROM python:3.9-slim
+# Stage 2: Runtime
+FROM python:3.9-alpine AS runtime
 
 WORKDIR /app
 
-# Install runtime dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends libpq5 && \
-    rm -rf /var/lib/apt/lists/*
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/opt/venv/bin:$PATH"
 
-# Copy wheels from builder
-COPY --from=builder /app/wheels /wheels
-COPY --from=builder /app/requirements.txt .
+# Install only the necessary runtime dependencies
+RUN apk add --no-cache libpq
 
-RUN pip install --no-cache /wheels/*
+# Copy virtual environment from builder
+COPY --from=builder /opt/venv /opt/venv
 
-# Copy project
-COPY . .
+# Copy only necessary project files
+COPY manage.py .
+COPY easyschool/ ./easyschool/
+COPY students/ ./students/
+COPY teachers/ ./teachers/
+COPY course/ ./course/
+COPY templates/ ./templates/
 
-# Create non-root user
-RUN useradd -m myuser && \
-    chown -R myuser:myuser /app
-USER myuser
-
-# Set environment variables that can be overridden
-ENV DATABASE_URL=sqlite:///db.sqlite3 \
-    DEBUG=0 \
-    DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+# Create a non-root user
+RUN adduser -D appuser && \
+    chown -R appuser:appuser /app
+USER appuser
 
 EXPOSE 8000
 
-# Add a healthcheck
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8000/ || exit 1
-
-# Run migrations and start application
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

@@ -6,7 +6,7 @@ module "networking" {
 
 module "security" {
   source = "./modules/security"
-  # Security module needs to know which VPC to create rules in
+  # Security module to know which VPC to create rules in
   vpc_id = module.networking.vpc_id
 }
 
@@ -21,7 +21,7 @@ module "compute" {
   instance_profile_name = module.security.instance_profile_name
 
 
-  # We depend on both networking and security being set up first
+  # Depends on both networking and security being set up first
   depends_on = [
     module.networking,
     module.security
