@@ -1,21 +1,17 @@
 module "networking" {
-  source = "./modules/networking"
-
-  # Pass in our networking-related variables
+  source             = "./modules/networking"
   vpc_cidr           = var.vpc_cidr
   public_subnet_cidr = var.public_subnet_cidr
 }
 
 module "security" {
   source = "./modules/security"
-
-  # The security module needs to know which VPC to create rules in
+  # Security module needs to know which VPC to create rules in
   vpc_id = module.networking.vpc_id
 }
 
 module "compute" {
-  source = "./modules/compute"
-
+  source                = "./modules/compute"
   ami_id                = var.ami_id
   subnet_id             = module.networking.public_subnet_id
   security_group_id     = module.security.security_group_id
