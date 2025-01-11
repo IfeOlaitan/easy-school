@@ -1,4 +1,3 @@
-# terraform-state/main.tf
 provider "aws" {
   region = "eu-west-2"
 }

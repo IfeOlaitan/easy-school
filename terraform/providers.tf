@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     bucket         = "easy-school-terraform-state"
     key            = "terraform.tfstate"
-    region         = var.aws_region
+    region         = "eu-west-2"
     dynamodb_table = "easy-school-terraform-lock"
     encrypt        = true
   }
