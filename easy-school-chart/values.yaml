@@ -1,0 +1,35 @@
+# Docker image configuration
+image:
+  repository: ifeolaitan/easy-school
+  tag: v1
+  pullPolicy: IfNotPresent
+
+# Application configuration
+configMap:
+  djangoAllowedHosts: "*"
+  debug: "0"
+
+# Service configuration
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 8000
+
+# Resource limits for the container
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+# Autoscaling settings from our previous HPA
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+
+# Number of replicas if autoscaling is disabled
+replicaCount: 2

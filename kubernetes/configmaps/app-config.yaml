@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: easy-school-config
+  namespace: easy-school
+data:
+  DJANGO_ALLOWED_HOSTS: "*"
+  DEBUG: "0"

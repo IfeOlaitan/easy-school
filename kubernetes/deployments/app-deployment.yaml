@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: easy-school
+  namespace: easy-school
+spec:
+  replicas: 2                    # Runs 2 copies of your app
+  selector:
+    matchLabels:
+      app: easy-school          # Links to pods with this label
+  template:
+    metadata:
+      labels:
+        app: easy-school        # Label for the pods
+    spec:
+      containers:
+        - name: easy-school
+          image: ifeolaitan/easy-school:v1    # Your Docker image
+          ports:
+            - containerPort: 8000    # Port your app listens on
+          envFrom:
+            - configMapRef:
+                name: easy-school-config    # Uses the ConfigMap
+          resources:               # Resource limits
+            requests:             # Minimum resources needed
+              memory: "256Mi"
+              cpu: "250m"
+            limits:              # Maximum resources allowed
+              memory: "512Mi"
+              cpu: "500m"
