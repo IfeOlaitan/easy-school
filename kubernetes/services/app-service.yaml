@@ -8,5 +8,5 @@ spec:
     app: easy-school           # Matches deployment labels
   ports:
     - port: 80                   # Port the service listens on
-      targetPort: 8000          # Port on your container
+      targetPort: 8000          # Port on container
   type: LoadBalancer          # Makes service accessible externally

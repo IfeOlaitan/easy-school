@@ -4,7 +4,7 @@ metadata:
   name: easy-school
   namespace: easy-school
 spec:
-  replicas: 2                    # Runs 2 copies of your app
+  replicas: 2
   selector:
     matchLabels:
       app: easy-school          # Links to pods with this label
@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: easy-school
-          image: ifeolaitan/easy-school:v1    # Your Docker image
+          image: ifeolaitan/easy-school:v1
           ports:
-            - containerPort: 8000    # Port your app listens on
+            - containerPort: 8000    # Port app listens on
           envFrom:
             - configMapRef:
                 name: easy-school-config    # Uses the ConfigMap
