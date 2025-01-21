@@ -17,7 +17,7 @@ spec:
         - name: easy-school
           image: ifeolaitan/easy-school:v1
           ports:
-            - containerPort: 8000    # Port app listens on
+            - containerPort: 8000
           envFrom:
             - configMapRef:
                 name: easy-school-config    # Uses the ConfigMap
